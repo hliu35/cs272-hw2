@@ -113,7 +113,7 @@ def top_k_index(row, k, threshold=0, ordered=True):
     return idx_selected, v_selected
 
 
-def compute_scores(prediction, ground_truth, K=10, w=0, methodology=0):
+def compute_scores(prediction, ground_truth, K=10, w1=0, w2=0, methodology=0):
     m, n = prediction.shape
     prec_list, rec_list, ndcgs = [], [], []
 
@@ -133,14 +133,18 @@ def compute_scores(prediction, ground_truth, K=10, w=0, methodology=0):
         mu = np.mean(prediction[i,notzeros])
         sigma = np.std(prediction[i,notzeros])
 
+        notzeros = np.nonzero(gt_row)
+        gt_mu = np.mean(ground_truth[i,notzeros])
+        gt_sigma = np.std(ground_truth[i,notzeros])
+
         # clear all cells that have no ground truth to compare to
         prediction[i, clean_mask[i, :]] = 0
         pred = prediction[i, :]
         gt = ground_truth[i,:]
         
-        tops_pred, _ = top_k_index(pred, K, mu + w*sigma)
+        tops_pred, _ = top_k_index(pred, K, mu + w1*sigma)
         #tops_pred, _ = top_k_index(pred, K)
-        tops_gt, v_gt = top_k_index(gt, K)
+        tops_gt, v_gt = top_k_index(gt, K, gt_mu + w2*gt_sigma)
 
         if len(tops_pred) > 0: # precision (of all the pred, % that are gt)
             prec = len([x for x in tops_gt if x in tops_pred]) / len(tops_pred)
