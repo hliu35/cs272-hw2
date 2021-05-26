@@ -1,0 +1,2 @@
+Download the dataset and store the .json file in this data/ folder
+Download link: http://jmcauley.ucsd.edu/data/amazon/
