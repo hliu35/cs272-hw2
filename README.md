@@ -13,6 +13,8 @@ Therefore, due to the scale of the default dataset ([Amazon video game reviews](
 
 Furthermore, to free up memory spaces, it is advised that you do not run a new notebook before closing the previous running ones. 
 
+If you still have issue running the notebooks, view their outputs on GitHub or email me :) This is the nice thing about Jupyter, is you can read it just like a PDF book.
+
 ----
 
 ## Downloading the dataset
