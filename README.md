@@ -25,3 +25,5 @@ The notebooks were written in the order of HW questions. As such, subsequent not
 
 ### Note for Matrix Factorization
 Because of memory usage, the default device for training models is `device='cpu'`. To change the device to GPU, you can manually set `device='cuda'` in part2b.
+
+To change the evaluation methodology, change the `methodology` argument in `compute_score()`
